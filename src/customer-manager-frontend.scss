@@ -1,0 +1,154 @@
+@import '~@angular/material/theming';
+@import './app/common/components/navtabs/navtabs.component.scss';
+@import './app/pages/customers/create-customer/create-customer.component.scss';
+@import './app/pages/visits/create-visit/create-visit.component.scss';
+@import './app/common/components/footer/footer.component.scss';
+@import './app/common/components/header/header.component.scss';
+@import './app/pages/customers/customers/customers.component.scss';
+@import './app/pages/visits/visits/visits.component.scss';
+@import './app/pages/home/home.component.scss';
+@import './app/pages/login/sign-in/sign-in.component.scss';
+
+@include mat-core();
+
+$accent: (
+    50 : #e2eaf2,
+    100 : #b6cbdf,
+    200 : #85a9ca,
+    300 : #5487b4,
+    400 : #306da4,
+    500 : #0b5394,
+    600 : #0a4c8c,
+    700 : #084281,
+    800 : #063977,
+    900 : #032965,
+    A100 : #95b6ff,
+    A200 : #6294ff,
+    A400 : #2f71ff,
+    A700 : #155fff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$warn: (
+    50 : #f9f0e6,
+    100 : #f1dac1,
+    200 : #e8c198,
+    300 : #dea86f,
+    400 : #d79550,
+    500 : #d08231,
+    600 : #cb7a2c,
+    700 : #c46f25,
+    800 : #be651f,
+    900 : #b35213,
+    A100 : #ffede4,
+    A200 : #ffcdb1,
+    A400 : #ffac7e,
+    A700 : #ff9b64,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$primary:(
+    50 : #e6e6e6,
+    100 : #c1c1c1,
+    200 : #989898,
+    300 : #6f6f6f,
+    400 : #505050,
+    500 : #313131,
+    600 : #2c2c2c,
+    700 : #252525,
+    800 : #1f1f1f,
+    900 : #131313,
+    A100 : #ef6c6c,
+    A200 : #ea3e3e,
+    A400 : #f50000,
+    A700 : #db0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+$customer-manager-frontend-primary: mat-palette($primary, 500, 200, 900);
+$customer-manager-frontend-accent:  mat-palette($accent, 200, 100, A700);
+$customer-manager-frontend-warn:    mat-palette($warn, 500, 100, 800);
+
+$customer-manager-frontend-theme: mat-light-theme($customer-manager-frontend-primary, $customer-manager-frontend-accent, $customer-manager-frontend-warn);
+
+@include angular-material-theme($customer-manager-frontend-theme);
+@include navtabs-component-theme($customer-manager-frontend-theme);
+@include header-component-theme($customer-manager-frontend-theme);
+@include footer-component-theme($customer-manager-frontend-theme);
+@include home-component-theme($customer-manager-frontend-theme);
+@include sign-in-component-theme($customer-manager-frontend-theme);
+@include customers-component-theme($customer-manager-frontend-theme);
+@include create-customer-component-theme($customer-manager-frontend-theme);
+@include visit-component-theme($customer-manager-frontend-theme);
+@include create-visit-component-theme($customer-manager-frontend-theme);
+
+
+$customer-manager-frontend-typography: mat-typography-config(
+  $font-family:   'Rubik, sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3:     mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2:     mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1:     mat-typography-level(34px, 40px, 400),
+  $headline:      mat-typography-level(97.54px, 0px, 400),
+  $title:         mat-typography-level(61px, 100px, 500),
+  $subheading-2:  mat-typography-level(48.77px, 60px, 400),
+  $subheading-1:  mat-typography-level(34.14px, 0.25px, 400),
+  $body-2:        mat-typography-level(14px, 0.25px, 500),
+  $body-1:        mat-typography-level(16.26px, 0.5px, 400),
+  $caption:       mat-typography-level(12px, 20px, 400),
+  $button:        mat-typography-level(14px, 1.25px, 500),
+  // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(large, 1.125, 400)
+);
+
+
+@include mat-base-typography($customer-manager-frontend-typography);
+@include mat-checkbox-typography($customer-manager-frontend-typography);
+@include angular-material-typography($customer-manager-frontend-typography);
+@include mat-core($customer-manager-frontend-typography);

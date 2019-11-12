@@ -1,0 +1,22 @@
+@import '~@angular/material/theming';
+
+@mixin footer-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $config: mat-typography-config();
+
+    .footer-container {
+        background-color: mat-color($accent);
+        text-align: center;
+
+        .social-container{
+            padding: 4em;
+            width: 300px;
+            color: mat-color($primary);
+            display: inline-block;
+            
+        }
+    }
+}
+

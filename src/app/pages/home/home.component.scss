@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+@mixin home-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $config: mat-typography-config();
+
+    .home-container{
+        height: 100vh;
+        background: url(/assets/images/bicycle-home.jpg) no-repeat;
+        
+        .header{
+            height: 100vh;
+            background-color: transparent;
+        }
+    }
+
+}

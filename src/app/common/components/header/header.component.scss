@@ -1,0 +1,22 @@
+@mixin header-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+
+    .header-container {
+        background-color: mat-color($accent);   
+    }
+}
+
+
+.logo-container {
+    width: 100%;
+    margin-left: 117px;
+}
+
+.logo {
+    width: 100px;
+}
+
+mat-toolbar {
+    height: 60px;
+}

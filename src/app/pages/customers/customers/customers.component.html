@@ -1,0 +1,48 @@
+<div class="customer-manager-container">
+  <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+    [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+  </canvas>
+  <h1 class="mat-title">{{title}}</h1>
+  <div fxLayout="row" fxLayoutAlign="end start">
+    <button mat-raised-button color="accent" (click)="createCustomerDialog()">Create Customer</button>
+  </div>
+  <mat-grid-list cols="1" rowHeight="2:1" gutterSize="2em" style="margin: 2em;" *ngIf="customers">
+    <mat-grid-tile *ngFor="let customer of customers">
+      <mat-card class="customer-card">
+        <div fxLayout="row" fxFlexFill style="min-height: 100%; min-width: 100%;">
+          <div fxFlex="35">
+            <h1>Nit: {{customer.nit}}</h1>
+            <h2>Full Name: {{customer.fullName}}</h2>
+            <h2>City: {{customer.city.name}}</h2>
+            <h2>Address: {{customer.address}}</h2>
+            <h2>Phone: {{customer.phone}}</h2>
+          </div>
+          <mat-divider [vertical]="true"></mat-divider>
+          <div fxFlex="40">
+            <h1>AvailableCredit: {{customer.availableCredit}}</h1>
+            <h2>Credit Limit: {{customer.creditLimit}}</h2>
+            <h2>Visits Percentage: {{customer.visitsPercentage}}</h2>
+            <h2>Visits: {{customer.visits?.length}}</h2>
+          </div>
+          <mat-divider [vertical]="true"></mat-divider>
+          <div fxFlex="25">
+            <div fxLayout="column" fxLayoutAlign="space-around stretch">
+              <button mat-raised-button color="primary" [routerLink]="['/customer', customer.id, 'visits']"
+                *ngIf="authService.hasRole('ROLE_USER')">
+                Visits
+              </button>
+              <button mat-raised-button color="accent" (click)="editCustomerDialog(customer.id)"
+                *ngIf="authService.hasRole('ROLE_USER')">
+                Edit
+              </button>
+              <button mat-raised-button color="warn" (click)="onDelete(customer.id)"
+                *ngIf="authService.hasRole('ROLE_USER')">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

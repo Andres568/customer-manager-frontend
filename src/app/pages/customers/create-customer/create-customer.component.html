@@ -1,0 +1,137 @@
+<div class="create-customer-container">
+    <h1 mat-dialog-title class="mat-subheading-2">{{title}}</h1>
+    <mat-dialog-content *ngIf="countries">
+        <mat-card *ngIf="errores?.length > 0">
+            <mat-card-header>
+                <h1 mat-dialog-title class="subheading-1">Errors</h1>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <li *ngFor="let err of errores">
+                        {{ err }}
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+        <form [formGroup]="form" (submit)="onSaveCustomer(form.value)" >
+            <mat-form-field>
+                <label for="nit">Nit</label>
+                <input matInput name="nit" formControlName="nit" type="text" />
+                <mat-error *ngIf="form.controls['nit'].errors?.required">
+                    Nit is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.nit" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['nit'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="fullName">Full Name</label>
+                <input matInput name="fullName" formControlName="fullName" type="text" />
+                <mat-error *ngIf="form.controls['fullName'].errors?.required">
+                    Full Name is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.fullName" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['fullName'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="address">Address</label>
+                <input matInput name="address" formControlName="address" type="text" />
+                <mat-error *ngIf="form.controls['address'].errors?.required">
+                    Address is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.address" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['address'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="phone">Phone</label>
+                <input matInput name="phone" formControlName="phone" type="tel" />
+                <mat-error *ngIf="form.controls['phone'].errors?.required">
+                    Phone is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.phone" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['phone'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="creditLimit">Credit Limit</label>
+                <input matInput name="creditLimit" formControlName="creditLimit" type="number" />
+                <mat-error *ngIf="form.controls['creditLimit'].errors?.required">
+                    Credit Limit is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.creditLimit" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['creditLimit'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="visitsPercentage">Visits Percentage</label>
+                <input matInput name="visitsPercentage" formControlName="visitsPercentage" type="number" />
+                <mat-error *ngIf="form.controls['visitsPercentage'].errors?.required">
+                    Visits Percentage is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.visitsPercentage" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['visitsPercentage'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="country">Country</label>
+                <mat-select name="country" formControlName="country" [compareWith]="byCountry"
+                    [value]="form.value.country">
+                    <mat-option *ngFor="let country of countries" [value]="country">
+                        {{country.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['country'].errors?.required">
+                    Country is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.country" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['country'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="state">State</label>
+                <mat-select name="state" formControlName="state" [compareWith]="byState" [value]="form.value.state">
+                    <mat-option *ngFor="let state of form.value.country.states" [value]="state">
+                        {{state.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['state'].errors?.required">
+                    State is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.state" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['state'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="city">City</label>
+                <mat-select name="city" formControlName="city" [compareWith]="byCity" [value]="form.value.city">
+                    <mat-option *ngFor="let city of form.value.state.cities" [value]="city">
+                        {{city.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['city'].errors?.required">
+                    City is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.city" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['city'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <div mat-dialog-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+            </div>
+        </form>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onDialogBack()">No Thanks</button>
+        </div>
+    </mat-dialog-content>
+</div>

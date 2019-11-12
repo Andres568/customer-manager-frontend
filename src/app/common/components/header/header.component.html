@@ -1,0 +1,15 @@
+<div class="header-container">
+    <mat-toolbar color="accent">
+        <div class="logo-container">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <img class="logo" src="assets/images/logo.svg" alt="">
+            </div>
+        </div>
+        <div>
+            <a mat-raised-button *ngIf="!authService.isAuthenticated()" color="primary" routerLink="/sign-in">Sign
+                In</a>
+            <a mat-raised-button *ngIf="authService.isAuthenticated()" color="primary" routerLink="/sign-in"
+                (click)="onLogOut()">Sign Out</a>
+        </div>
+    </mat-toolbar>
+</div>

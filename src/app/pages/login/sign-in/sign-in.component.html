@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-header>
+        <img mat-card-image  src="assets/images/bicycle.svg">
+    </mat-card-header>
+    <mat-card-content>
+        <div class="sign-in-container">
+            <h1 class="mat-title">{{title}}</h1>
+            <form [formGroup]="form" (submit)="onSignIn(form.value)">
+              <mat-form-field>
+                <label for="username">username</label>
+                <input matInput name="username" formControlName="username" type="text" />
+                <mat-error *ngIf="form.controls['username'].errors?.required">
+                  username is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.username" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls['username'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+              <mat-form-field>
+                <label for="password">password</label>
+                <input matInput name="password" formControlName="password" type="text" />
+                <mat-error *ngIf="form.controls['password'].errors?.required">
+                  password is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.password" matSuffix mat-icon-button aria-label="Clear" (click)="form.controls['password'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+              <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" >Sign In</button>
+            </form>
+            
+          </div>
+    </mat-card-content>
+  </mat-card>

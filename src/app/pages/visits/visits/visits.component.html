@@ -1,0 +1,50 @@
+<div class="visit-container">
+    <canvas baseChart 
+    [datasets]="lineChartData" 
+    [labels]="lineChartLabels" 
+    [options]="lineChartOptions"
+    [colors]="lineChartColors" 
+    [legend]="lineChartLegend" 
+    [chartType]="lineChartType" 
+    [plugins]="lineChartPlugins">
+</canvas>
+
+    <h1 class="mat-title">{{title}}</h1>
+    <div fxLayout="row" fxLayoutAlign="end start">
+            <button mat-raised-button color="accent" (click)="createVisitDialog()">Create Visit</button>
+    </div>
+  <mat-grid-list cols="1" rowHeight="2:1" gutterSize="2em" style="margin: 2em;" *ngIf="customer">
+    <mat-grid-tile *ngFor="let visit of customer.visits">
+      <mat-card class="visit-card">
+        <div fxLayout="row" fxFlexFill style="min-height: 100%; min-width: 100%;">
+          <div fxFlex="35">
+            <h1>Customer: {{customer.fullName}}</h1>
+            <h2>Sales Representative: {{visit.salesRepresentative.fullName}}</h2>
+            <h2>Date: {{visit.date | date}}</h2>
+          </div>
+          <mat-divider [vertical]="true"></mat-divider>
+          <div fxFlex="40">
+            <h1>Net: {{visit.net}}</h1>
+            <h2>Visit Total: {{visit.visitTotal}}</h2>
+            <h2>Description: {{visit.description}}</h2>
+          </div>
+          <mat-divider [vertical]="true"></mat-divider>
+          <div fxFlex="25">
+              <div fxLayout="column" fxLayoutAlign="space-around stretch" >
+                  <button mat-raised-button color="accent" 
+                  (click)="editVisitDialog(visit.id)"
+                  *ngIf="authService.hasRole('ROLE_USER')">
+                  Edit
+                </button>
+                <button mat-raised-button color="warn" 
+                  (click)="onDelete(visit.id)" 
+                  *ngIf="authService.hasRole('ROLE_USER')">
+                  Delete
+                </button>
+              </div>
+          </div>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

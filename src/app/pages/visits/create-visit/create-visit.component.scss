@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+@mixin create-visit-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $config: mat-typography-config();
+
+    .create-visit-container{
+        font-family: mat-font-family($config); 
+        color: mat-color($primary);
+        text-align: center;  
+        margin: auto;
+
+        form  mat-form-field{    
+            display: list-item;
+            list-style-type: none;
+            margin: auto;
+            text-align: left;
+            width: 400px;
+            margin: auto;  
+        }
+
+        button{
+            margin: auto;
+            display: inline;
+        }
+
+        table{
+            background-color: mat-color($accent);
+        }
+    }
+}

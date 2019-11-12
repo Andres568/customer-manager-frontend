@@ -1,0 +1,78 @@
+<div class="create-visit-container">
+    <mat-dialog-content>
+        <h1 mat-dialog-title class="mat-subheading-2">{{title}}</h1>
+        <mat-card *ngIf="errores?.length > 0">
+                <mat-card-header>
+                    <h1 mat-dialog-title class="subheading-1">Errors</h1>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li *ngFor="let err of errores">
+                            {{ err }}
+                        </li>
+                    </ul>
+                </mat-card-content>
+        </mat-card>
+        <form [formGroup]="form" (submit)="onSaveVisit(form.value)">
+            <mat-form-field>
+                <input matInput name="date" formControlName="date" [matDatepicker]="date" placeholder="Date" />
+                <mat-error *ngIf="form.controls['date'].errors?.required">
+                    Please enter a valid date <br>
+                    Date is <strong>required</strong>
+                </mat-error>
+                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+                <button mat-button *ngIf="form.value.date" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['date'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="net">Net</label>
+                <input matInput name="net" formControlName="net" type="number" />
+                <mat-error *ngIf="form.controls['net'].errors?.required">
+                    Net is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.net" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['net'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="description">Description</label>
+                <input matInput name="description" formControlName="description" type="text" />
+                <mat-error *ngIf="form.controls['description'].errors?.required">
+                    Description is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.description" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['description'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field>
+                <label for="salesRepresentative">SalesRepresentative</label>
+                <mat-select name="salesRepresentative" formControlName="salesRepresentative"
+                    [compareWith]="bySalesRepresentative" [value]="form.value.salesRepresentative">
+                    <mat-option *ngFor="let salesRepresentative of salesRepresentatives" [value]="salesRepresentative">
+                        {{salesRepresentative.fullName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['salesRepresentative'].errors?.required">
+                    SalesRepresentative is <strong>required</strong>
+                </mat-error>
+                <button mat-button *ngIf="form.value.salesRepresentative" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="form.controls['salesRepresentative'].setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <div mat-dialog-actions>
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+            </div>
+            {{form.errors}}
+        </form>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onDialogBack()">No Thanks</button>
+        </div>
+    </mat-dialog-content>
+</div>

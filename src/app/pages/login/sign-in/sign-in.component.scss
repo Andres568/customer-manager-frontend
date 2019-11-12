@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+@mixin sign-in-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $config: mat-typography-config();
+
+    .sign-in-container{
+        text-align: center;
+        margin: auto;
+        background-color: #dddddd;
+        padding-bottom: 2em;
+
+        form  mat-form-field{
+            display: list-item;
+            list-style-type: none;
+            margin: auto;
+            text-align: left;
+            width: 400px;
+            margin: auto;
+            margin-bottom: 2em;
+        
+        }
+        
+        button{
+            margin-left: 2em;
+            margin-right: 2em;
+        }
+    }
+
+}

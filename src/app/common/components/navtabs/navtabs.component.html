@@ -1,0 +1,15 @@
+<div class="navtabs-container">
+    <nav mat-tab-nav-bar fxFlex fxLayout="row" fxLayoutAlign="center center" >
+        <a mat-tab-link routerLink="/home"
+        routerLinkActive #home="routerLinkActive"
+        [active]="home.isActive">
+        Home
+        </a>
+        <a mat-tab-link routerLink="/customers"
+        routerLinkActive #customers="routerLinkActive"
+        [active]="customers.isActive"
+        *ngIf="authService.hasRole('ROLE_USER')">
+        Customers
+        </a>
+    </nav>               
+</div>

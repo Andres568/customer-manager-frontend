@@ -1,0 +1,49 @@
+// Import Material Mixins
+@import '~@angular/material/theming';
+// Define a custom mixin that takes in the current theme
+
+@mixin customers-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $config: mat-typography-config();
+
+  .customer-manager-container{
+    height: auto;
+    min-height: 100vh;
+    background-color: mat-color($primary);
+    border-color: mat-color($accent);
+    color: mat-color($warn);
+    text-align: center;  
+    font-family: mat-font-family($config); 
+    padding: 2em;
+    
+    h1, h2, h3{
+      margin: 1em;
+    }
+
+    mat-form-field {
+      margin-top: 1em;
+      width: 100%;
+      background-color: mat-color($accent);
+    }
+
+    .customer-card{
+      width: 1000px;
+      height: 400px;
+    }
+
+    mat-divider{
+        min-height: 100%;
+        background-color: mat-color($accent);
+    }
+
+    button{
+        margin-left: 2em;
+    }
+  }
+
+}
+
+
+
